@@ -1,3 +1,4 @@
+import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -27,6 +28,8 @@ export const createStream = formValues => async (dispatch, getState) => {
   const response = await streams.post("/streams", { ...formValues, userId });
 
   dispatch({ type: CREATE_STREAM, payload: response.data });
+  // go to root router after successful stream creation:
+  history.push("/");
 };
 
 export const fetchStreams = () => async dispatch => {
